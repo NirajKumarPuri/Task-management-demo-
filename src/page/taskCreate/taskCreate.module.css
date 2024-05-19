@@ -1,0 +1,97 @@
+.container {
+  width: 100%;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(227, 224, 216);
+}
+.manheader {
+  padding-left: 10px;
+}
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contentopen {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.contentbox {
+  width: 40%;
+  /* height: 40%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.contentboxopen {
+  width: 50%;
+  /* height: 40%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.header {
+  margin: 0px;
+  padding: 10px;
+}
+.inputbox {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.Selectbox {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.labelbox {
+  width: 100%;
+  padding: 10px 10px 7px 60px;
+}
+.Select {
+  width: 80%;
+  margin-bottom: 40px;
+}
+.inputfield [type="text"] {
+  border-bottom: none !important;
+}
+.buttonbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .contentbox {
+    width: 98%;
+  }
+  .contentboxopen {
+    width: 98%;
+  }
+  .inputbox {
+    display: flex;
+    flex-direction: column;
+  }
+  .Select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .Selectbox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .labelbox {
+    width: 100%;
+    padding: 0px 0px 7px 2px;
+  }
+}

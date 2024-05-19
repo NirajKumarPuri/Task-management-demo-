@@ -1,0 +1,249 @@
+.container {
+  min-width: 100%;
+  height: 100vh;
+  background-color: seashell;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  min-width: 94%;
+  height: 94vh;
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.box_one {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-image: linear-gradient(#000080, #aab2e7);
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headertext {
+  background-image: url("../../assets/images/india-26828_640.webp");
+  background-size: contain;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.logoimage {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+.companyLogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.contentSection {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+.contentSection h1 {
+  text-align: center;
+  color: #fff;
+}
+.contentSection h3 {
+  padding-top: 10vh;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+}
+.contentSection p {
+  padding: 0px 100px;
+  text-align: center;
+  color: #fff;
+}
+.footer {
+  margin-top: 40vh;
+}
+.box_two {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+}
+.header {
+  margin: 40px 0px 20px 0px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.form_box {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+.emailBox {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.passwardBox {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  border: none;
+  border-bottom: 2px solid #3498db;
+}
+.buttonBox {
+  display: flex;
+  margin-top: 20px;
+}
+.signUp {
+  margin-left: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border-bottom: 2px solid #3498db;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+input,
+/* select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border-bottom: 2px solid #3498db;
+  border-radius: 4px;
+  box-sizing: border-box;
+} */
+input[type="password"]:focus {
+  outline: none;
+}
+.checkedboxcantainer {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+.checkInput {
+  width: 10%;
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.signInBtn {
+  background-color: #364cd9;
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.signUpBtn {
+  background-color: #fff;
+  border: 1px solid #364cd9;
+  color: #081778;
+  padding: 11px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 18px;
+  margin-left: 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.signUpBtn:hover {
+  background-color: #364cd9;
+  border: 1px solid #fff;
+  color: #fff;
+}
+@media only screen and (max-width: 920px) {
+  .contentSection p {
+    padding: 0px 10px;
+    color: #fff;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    border-radius: 10px;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .checkInput {
+    width: 20%;
+  }
+  .box_one {
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+  }
+  .box_two {
+    width: 100%;
+  }
+  .contentSection p {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
+}
+/* .box_two {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: seashell;
+  }
+  .content {
+    width: 100%;
+    height: 70vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    margin: 10px 0px 10px 0px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .emailBox {
+    display: flex;
+    flex-direction: column;
+  }
+  .passwardBox {
+    display: flex;
+    flex-direction: column;
+  }
+  .buttonBox {
+    display: flex;
+    justify-content: center;
+  } */
