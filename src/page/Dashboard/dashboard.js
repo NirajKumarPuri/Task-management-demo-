@@ -195,7 +195,7 @@ export default function Dashboard() {
             style={{
               width: "80%",
               display: "flex",
-              justifyContent: isMobile ? "space-between" : "flex-end",
+              justifyContent: isMobile ? "flex-end" : "flex-end",
             }}
           >
             <span

@@ -190,10 +190,7 @@ const Login = () => {
                     Login
                   </button>
                 </div>
-                <div style={{ marginTop: "20px" }}>
-                  {/* <button className={styles.signUpBtn} onClick={signUp}>
-                    {toggle ? "Sign Up" : "Edit Done"}
-                  </button> */}
+                <div style={{ marginTop: "10px", marginBottom: "20px" }}>
                   account already exist ? <a href="/signup">signIn</a>
                 </div>
               </div>

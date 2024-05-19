@@ -130,87 +130,93 @@ export default function TaskView({ item, state, open, isMobile }) {
         })}
       </div>
       <div className={open ? styles.tablecontentopen : styles.tablecontent}>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead sx={{ backgroundColor: "#464775" }}>
-                <TableRow>
-                  <TableCell sx={{ color: "white" }}>TaskId</TableCell>
-                  <TableCell sx={{ color: "white" }}>CompanyName</TableCell>
-                  <TableCell sx={{ color: "white" }}>TaskName</TableCell>
-                  <TableCell sx={{ color: "white" }}>Status</TableCell>
-                </TableRow>
-              </TableHead>
-              {data?.map((item, index) => (
-                <Droppable key={item.id} droppableId={`products${item.id}`}>
-                  {(provided) => (
-                    <TableBody
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                    >
-                      {item?.component?.map((product, index) => (
-                        <Draggable
-                          key={product.id}
-                          draggableId={`products${product.id}`}
-                          index={index}
-                        >
-                          {(provided) => (
-                            <TableRow
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              ref={provided.innerRef}
-                              sx={{
-                                backgroundColor:
-                                  index % 2 === 0 ? "#d5d5d5" : "#48494b",
-                                color: index % 2 === 0 ? "black" : "white",
-                                border: "1px solid white",
-                              }}
-                              key={product.id}
-                            >
-                              <TableCell
-                                sx={{
-                                  color: index % 2 === 0 ? "black" : "white",
-                                }}
-                              >
-                                {`Task${product.taskId}`}
-                              </TableCell>
+        {existingUserTask.length > 0 ? (
+          <DragDropContext onDragEnd={onDragEnd}>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead sx={{ backgroundColor: "#464775" }}>
+                  <TableRow>
+                    <TableCell sx={{ color: "white" }}>TaskId</TableCell>
+                    <TableCell sx={{ color: "white" }}>CompanyName</TableCell>
+                    <TableCell sx={{ color: "white" }}>TaskName</TableCell>
+                    <TableCell sx={{ color: "white" }}>Status</TableCell>
+                  </TableRow>
+                </TableHead>
 
-                              <TableCell
+                {data?.map((item, index) => (
+                  <Droppable key={item.id} droppableId={`products${item.id}`}>
+                    {(provided) => (
+                      <TableBody
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+                        {item?.component?.map((product, index) => (
+                          <Draggable
+                            key={product.id}
+                            draggableId={`products${product.id}`}
+                            index={index}
+                          >
+                            {(provided) => (
+                              <TableRow
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                ref={provided.innerRef}
                                 sx={{
+                                  backgroundColor:
+                                    index % 2 === 0 ? "#d5d5d5" : "#48494b",
                                   color: index % 2 === 0 ? "black" : "white",
                                   border: "1px solid white",
                                 }}
+                                key={product.id}
                               >
-                                {product.companyName}
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  color: index % 2 === 0 ? "black" : "white",
-                                  border: "1px solid white",
-                                }}
-                              >
-                                {product.taskName}
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  color: index % 2 === 0 ? "black" : "white",
-                                  border: "1px solid white",
-                                }}
-                              >
-                                {product.status}
-                              </TableCell>
-                            </TableRow>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </TableBody>
-                  )}
-                </Droppable>
-              ))}
-            </Table>
-          </TableContainer>
-        </DragDropContext>
+                                <TableCell
+                                  sx={{
+                                    color: index % 2 === 0 ? "black" : "white",
+                                  }}
+                                >
+                                  {`Task${product.taskId}`}
+                                </TableCell>
+
+                                <TableCell
+                                  sx={{
+                                    color: index % 2 === 0 ? "black" : "white",
+                                    border: "1px solid white",
+                                  }}
+                                >
+                                  {product.companyName}
+                                </TableCell>
+                                <TableCell
+                                  sx={{
+                                    color: index % 2 === 0 ? "black" : "white",
+                                    border: "1px solid white",
+                                  }}
+                                >
+                                  {product.taskName}
+                                </TableCell>
+                                <TableCell
+                                  sx={{
+                                    color: index % 2 === 0 ? "black" : "white",
+                                    border: "1px solid white",
+                                  }}
+                                >
+                                  {product.status}
+                                </TableCell>
+                              </TableRow>
+                            )}
+                          </Draggable>
+                        ))}
+
+                        {provided.placeholder}
+                      </TableBody>
+                    )}
+                  </Droppable>
+                ))}
+              </Table>
+            </TableContainer>
+          </DragDropContext>
+        ) : (
+          <p className={styles.taskerror}>No tasks available.</p>
+        )}
       </div>
     </div>
   );
