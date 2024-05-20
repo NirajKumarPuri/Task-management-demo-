@@ -28,6 +28,9 @@ export default function TaskCreate({ item, state, open, isMobile }) {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   useEffect(() => {
+    setTask(getData);
+  }, []);
+  useEffect(() => {
     window.localStorage.setItem("task", JSON.stringify(task));
   }, [task]);
 
@@ -50,7 +53,7 @@ export default function TaskCreate({ item, state, open, isMobile }) {
   const submit = (event) => {
     event.preventDefault();
 
-    const existingUser = task.find((element) => element.email === item.email);
+    const existingUser = task.find((element) => element.id === item.id);
     if (!formData.companyName || !formData.taskName || !formData.status) {
       alert("please inter the value");
     } else if (
@@ -61,7 +64,7 @@ export default function TaskCreate({ item, state, open, isMobile }) {
     ) {
       setTask(
         task?.map((element) => {
-          if (element.email == item.email) {
+          if (element.id == item.id) {
             let newArray = [...element.task];
             let newObj = {
               id: new Date().getTime().toString(),
@@ -105,7 +108,6 @@ export default function TaskCreate({ item, state, open, isMobile }) {
       arry.push(newObj);
       const newObject = {
         ...item,
-        id: new Date().getTime().toString(),
 
         task: arry,
       };

@@ -26,17 +26,18 @@ const Login = () => {
   const [cuurentId, setCurrentId] = useState();
   const [toggle, setToggle] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
+  const [id, setId] = useState("");
 
-  // useEffect(() => {
-  //   setFormData({
-  //     ...formData,
-  //     name: state?.name ? state.name : "",
-  //     email: state?.email ? state.email : "",
-  //     password: state?.password ? state.password : "",
-  //   });
-  //   setCurrentId(state?.id ? state.id : "");
-  //   setToggle(state?.name ? false : true);
-  // }, [state]);
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      name: state?.name ? state.name : "",
+      email: state?.email ? state.email : "",
+      password: state?.password ? state.password : "",
+    });
+    setCurrentId(state?.id ? state.id : "");
+    setToggle(state?.name ? false : true);
+  }, [state]);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -48,8 +49,10 @@ const Login = () => {
     window.localStorage.setItem("item", JSON.stringify(item));
     console.log("item", item);
     if (newProfile) {
-      navigate(`/dashboard`, { state: formData });
-      // setFormData({ ...formData, name: "", email: "", password: "" });
+      navigate(`/dashboard`, {
+        state: { ...formData, id: state?.id ? state?.id : id },
+      });
+      setFormData({ ...formData, name: "", email: "", password: "" });
     }
   }, [item, newProfile]);
 
@@ -66,7 +69,8 @@ const Login = () => {
       formData.name &&
       formData.email &&
       formData.password &&
-      existingUser
+      existingUser &&
+      toggle
     ) {
       alert("Account already exist please SignIn");
       navigate(`/Signup`);
@@ -90,9 +94,9 @@ const Login = () => {
         })
       );
       setCurrentId("");
-      // setFormData({ ...formData, name: "", email: "", password: "" });
-      // setToggle(true);
-      // setNewProfile(true);
+
+      setToggle(true);
+      setNewProfile(true);
     } else {
       const newObject = {
         id: new Date().getTime().toString(),
@@ -100,12 +104,13 @@ const Login = () => {
         email: formData.email,
         password: formData.password,
       };
+      setId(newObject.id);
       setItem([...item, newObject]);
       setNewProfile(true);
     }
   };
 
-  console.log("state===>", formData);
+  console.log("state===>", state);
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -187,7 +192,7 @@ const Login = () => {
               <div className={styles.btnBox}>
                 <div className={styles.buttonBox}>
                   <button type="submit" className={styles.signInBtn}>
-                    Login
+                    {toggle ? "Login" : "Edit Done"}
                   </button>
                 </div>
                 <div style={{ marginTop: "10px", marginBottom: "20px" }}>
@@ -195,11 +200,6 @@ const Login = () => {
                 </div>
               </div>
             </form>
-            {/* <div>
-              <button className={styles.signUpBtn} onClick={signUp}>
-                {toggle ? "Sign Up" : "Edit Done"}
-              </button>
-            </div> */}
           </div>
         </div>
       </div>

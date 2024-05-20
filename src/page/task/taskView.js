@@ -25,9 +25,11 @@ export default function TaskView({ item, state, open, isMobile }) {
   const [existingUserTask, setExistingUserTask] = useState([]);
 
   useEffect(() => {
-    const newexistingUserData = task?.find(
-      (element) => element.email == item.email
-    );
+    setTask(getData());
+  }, []);
+
+  useEffect(() => {
+    const newexistingUserData = task?.find((element) => element.id == item.id);
     console.log("newUser data====>", newexistingUserData);
     if (newexistingUserData?.task?.length > 0) {
       setExistingUserTask([...newexistingUserData.task]);

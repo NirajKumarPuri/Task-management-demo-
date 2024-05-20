@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 88vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: rgb(227, 224, 216);
@@ -44,7 +44,7 @@
 }
 .content {
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-top: 2px;
   display: flex;
   background-color: white;
@@ -73,12 +73,100 @@
 .textvalue {
   width: 60%;
 }
+.box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.boxopen {
+  width: 70%;
+  height: 280px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.boxone {
+  width: 45%;
+  height: 240px;
+  background-color: white;
+  margin-left: 10px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.boxtwo {
+  width: 45%;
+  height: 240px;
+
+  background-color: white;
+  margin-bottom: 20px;
+
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.renderbox {
+  width: 100%;
+  height: 85%;
+  overflow-y: scroll;
+}
+.renderbox::-webkit-scrollbar {
+  width: 10px;
+  height: 85%;
+}
+
+.renderbox::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.renderbox::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+}
+
+.renderbox::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+.boxoneheader {
+  /* margin: 5px 0px 5px 5px; */
+  padding: 5px 0px 10px 5px;
+  margin: 0px;
+  height: 15%;
+}
+.boxtwoheader {
+  /* margin: 5px 0px 5px 5px; */
+
+  padding: 5px 0px 10px 5px;
+  margin: 0px;
+  height: 15%;
+}
+.leavebox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.leavedetailbox {
+  width: 100%;
+  display: flex;
+}
+.leavelable {
+  width: 30%;
+  font-size: 14px;
+  font-weight: 200;
+}
+.leavetextvalue {
+  width: 50%;
+  font-size: 12px;
+}
+.leaveerrorbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+}
 @media only screen and (max-width: 768px) {
   .container {
     height: auto;
   }
   .content {
-    height: 68vh;
+    height: 60vh;
     margin-top: 2px;
     display: flex;
     flex-direction: column;
@@ -99,5 +187,18 @@
   .textvalue {
     width: 30%;
     font-size: 12px;
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .boxone {
+    width: 98%;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  .boxtwo {
+    width: 98%;
   }
 }

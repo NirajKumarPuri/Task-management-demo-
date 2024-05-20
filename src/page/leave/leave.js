@@ -34,6 +34,9 @@ export default function Leave({ item, state, open, isMobile }) {
   useEffect(() => {
     window.localStorage.setItem("task", JSON.stringify(task));
   }, [task]);
+  useEffect(() => {
+    setTask(getData());
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,7 +53,7 @@ export default function Leave({ item, state, open, isMobile }) {
 
   const submit = (event) => {
     event.preventDefault();
-    const existingUser = task.find((element) => element.email === item.email);
+    const existingUser = task.find((element) => element.id === item.id);
     if (!dateRange[0] || !dateRange[1] || !formData.reason) {
       alert("please inter the value");
     } else if (
@@ -61,8 +64,12 @@ export default function Leave({ item, state, open, isMobile }) {
     ) {
       setTask(
         task?.map((element) => {
-          if (element.email == item.email) {
-            let newArray = [...element.leave];
+          if (element.id == item.id) {
+            let newArray = [];
+            if (element?.leave?.length > 0) {
+              newArray = [...element.leave];
+            }
+
             let newObj = {
               startDate: dateRange[0].format("YYYY-MM-DD"),
               endDate: dateRange[1].format("YYYY-MM-DD"),
@@ -82,8 +89,9 @@ export default function Leave({ item, state, open, isMobile }) {
         ...formData,
         startDate: "",
         endDate: "",
-        reason: "Select",
+        reason: "",
       });
+
       setSnackbarMessage("Leave added successfully!");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);

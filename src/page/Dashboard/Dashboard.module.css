@@ -1,1 +1,67 @@
+.headerbox {
+  width: 100vh;
+  height: 20%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("../../assets/images/profilebackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.css-hgxbiv-MuiDialogContent-root {
+  padding: 0px !important;
+}
+.avtarbox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avtar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-image: url("../../assets/images/Profile_Image.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.nametext {
+  margin: 0px;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+}
+.contentone {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
+.detailbox {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+}
+.lable {
+  width: 30%;
+  font-size: 18px;
+  font-weight: 200;
+}
+.textvalue {
+  width: 60%;
+}
+@media only screen and (max-width: 768px) {
+  .headerbox {
+    width: 100%;
+  }
+  .lable {
+    width: 50%;
+    font-size: 12px;
+    font-weight: 200;
+  }
+  .textvalue {
+    width: 40%;
+    font-size: 12px;
+  }
+}

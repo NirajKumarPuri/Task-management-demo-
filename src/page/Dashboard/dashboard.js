@@ -34,6 +34,13 @@ import AddTaskIcon from "@mui/icons-material/AddTask";
 import TaskIcon from "@mui/icons-material/Task";
 import Leave from "../leave/leave";
 import TaskCreate from "../taskCreate/taskCreate";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 const drawerWidth = 240;
 const getData = () => {
@@ -84,6 +91,7 @@ export default function Dashboard() {
   const [open, setOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState("Home");
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const openMenu = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,25 +102,34 @@ export default function Dashboard() {
   useEffect(() => {
     setOpen(!isMobile);
   }, [isMobile]);
+  useEffect(() => {
+    setItem(getData());
+  }, [isMobile]);
 
   useEffect(() => {
-    const newDetail = item?.find((item) => item.name == state?.name);
+    const newDetail = item?.find((item) => item.id == state?.id);
     setDetail(newDetail);
-    if (state?.email == "") {
-      navigate(`/`);
-    }
+    // if (state?.id == "") {
+    //   navigate(`/`);
+    // }
   }, [state]);
 
   useEffect(() => {
     window.localStorage.setItem("item", JSON.stringify(item));
     console.log("item", item);
+    if (existingUserProfile) {
+      navigate(`/`);
+    }
   }, [item]);
   const deleteData = () => {
-    // setItem(
-    //   item?.filter((item) => {
-    //     return item.name !== state?.name;
-    //   })
-    // );
+    setItem(
+      item?.filter((item) => {
+        return item.name !== state?.name;
+      })
+    );
+    setExistingUserProfile(true);
+  };
+  const LogoutProfile = () => {
     navigate(`/`);
   };
   const handlePageChange = (pageName) => {
@@ -161,7 +178,14 @@ export default function Dashboard() {
         return <Home item={detail} state={state} open={open} />;
     }
   };
-  console.log("item state===>", isMobile);
+  const handleClickOpen = () => {
+    setDialogOpen(true);
+  };
+  const handleCloseDilog = () => {
+    setDialogOpen(false);
+  };
+
+  console.log("item state===>", state);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -203,6 +227,7 @@ export default function Dashboard() {
                 marginTop: isMobile ? "8px" : "5px",
                 fontSize: isMobile ? "12px" : "20px",
                 width: isMobile ? "" : "150px",
+                textAlign: "end",
               }}
             >
               {state?.name}
@@ -234,16 +259,22 @@ export default function Dashboard() {
               }}
             >
               <MenuItem onClick={handleClose}>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                <Avatar
+                  sx={{
+                    bgcolor: blue[100],
+                    color: blue[600],
+                    marginRight: "5px",
+                  }}
+                >
                   <PersonIcon />
                 </Avatar>
                 {state?.email}
               </MenuItem>
-              {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+              <MenuItem onClick={handleClickOpen}>My account</MenuItem>
               <MenuItem
                 onClick={() => {
                   handleClose();
-                  deleteData();
+                  LogoutProfile();
                 }}
               >
                 <ListItemIcon>
@@ -252,6 +283,61 @@ export default function Dashboard() {
                 Logout
               </MenuItem>
             </Menu>
+            <Dialog
+              onClose={handleCloseDilog}
+              aria-labelledby="customized-dialog-title"
+              open={dialogOpen}
+              sx={{ width: isMobile ? "100%" : "", overflow: "hidden" }}
+            >
+              <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                Profile
+              </DialogTitle>
+              <IconButton
+                aria-label="close"
+                onClick={handleCloseDilog}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+              <DialogContent sx={{ overflow: "hidden" }} dividers>
+                <div className={styles.headerbox}>
+                  <div className={styles.avtarbox}>
+                    <div className={styles.avtar}></div>
+                    <h2 className={styles.nametext}>{state?.name}</h2>
+                  </div>
+                </div>
+                <div className={styles.contentone}>
+                  <div className={styles.detailbox}>
+                    <span className={styles.lable}>Employee Name :</span>
+                    <div className={styles.textvalue}>{state.name}</div>
+                  </div>
+                  <div className={styles.detailbox}>
+                    <span className={styles.lable}>Employee Email :</span>
+                    <div className={styles.textvalue}>{state.email}</div>
+                  </div>
+                  <div className={styles.detailbox}>
+                    <span className={styles.lable}>Employee Address :</span>
+                    <div className={styles.textvalue}>Parbelia West Bengal</div>
+                  </div>
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button autoFocus onClick={deleteData}>
+                  Delete Account
+                </Button>
+                <Button
+                  autoFocus
+                  onClick={() => navigate(`/`, { state: state })}
+                >
+                  Edit Account
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
         </Toolbar>
       </AppBar>

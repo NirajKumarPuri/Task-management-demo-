@@ -26,6 +26,7 @@ const Signup = () => {
   const [cuurentId, setCurrentId] = useState();
   const [toggle, setToggle] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
+  const [id, setId] = useState("");
 
   useEffect(() => {
     setFormData({
@@ -46,7 +47,7 @@ const Signup = () => {
 
   useEffect(() => {
     window.localStorage.setItem("item", JSON.stringify(item));
-    console.log("item", item);
+
     if (newProfile) {
       navigate(`/home`);
     }
@@ -58,14 +59,15 @@ const Signup = () => {
       (user) =>
         user.email === formData.email && user.password === formData.password
     );
+    console.log("existingUser===>", existingUser);
     if (existingUser) {
-      navigate(`/dashboard`, { state: formData });
+      navigate(`/dashboard`, { state: { ...formData, id: existingUser?.id } });
     } else {
       alert("Invalid credentials");
       navigate(`/`);
     }
   };
-  console.log("state===>", state);
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
